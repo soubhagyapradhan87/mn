@@ -25,7 +25,7 @@ Future<String> getJson() async {
   String imgurl="http://mrunalinee.com/wp-json/wp/v2/media?parent=";
   http.Response response = await http.get(apiurl);
   RepoData.data=JSON.decode(response.body);
-  //print(RepoData.data);
+  print(RepoData.data);
   List<Post> list=new List<Post>();
   for(var x in RepoData.data){
     String a=x["id"].toString();

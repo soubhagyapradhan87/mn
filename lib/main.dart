@@ -5,7 +5,7 @@ void main() {
 
   runApp(
       new MaterialApp(
-        title: "MrunApp",
+        title: "MrunApp123",
         debugShowCheckedModeBanner: false,
         home: Home(),
       )

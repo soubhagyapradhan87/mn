@@ -4,17 +4,17 @@ import 'package:http/http.dart' as http;
 import 'package:mrun1/model/posts.dart';
 
 import 'package:flutter/material.dart';
-import 'ui/splashScreen.dart';
+
 import 'package:mrun1/repo/repo.dart';
 import 'package:mrun1/ui/homeScreen.dart';
 
 void main() async{
-
+  await getJson();
   runApp(
       new MaterialApp(
         title: "MrunApp",
         debugShowCheckedModeBanner: false,
-        home: new SplashScreen(),
+        home: new HomeScreen(RepoData.posts),
       )
   );
 }

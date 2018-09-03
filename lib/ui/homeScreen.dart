@@ -22,6 +22,19 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+//      appBar: AppBar(
+//        backgroundColor: Colors.transparent,
+//        title: Text("rinku"),
+//      ),
+//      drawer: Drawer(
+//        child: ListView(
+//          children: <Widget>[
+//            DrawerHeader(
+//              child: Text("gfgfhgfhg"),
+//            )
+//          ],
+//        ),
+//      ),
       body: Stack(
         fit: StackFit.expand,
         children: <Widget>[
@@ -41,10 +54,11 @@ class HomeScreen extends StatelessWidget {
     return new SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[_heading(), _createCourseScroller(), _buttons()],
+        children: <Widget>[_heading(), _createCourseScroller()],
       ),
     );
   }
+
 
   Widget _createCourseScroller() {
     return new Padding(
@@ -65,29 +79,8 @@ class HomeScreen extends StatelessWidget {
         ));
   }
 
-  Widget _buttons() {
-    return Column(
-        children:<Widget>[
-          Row(
-            children: <Widget>[
-              new RaisedButton(
-                  onPressed: () => debugPrint("clicked"), child: Text("clicked")),
-              new RaisedButton(
-                  onPressed: () => debugPrint("clicked"), child: Text("clicked")),
-            ],
-          ),
-          Row(
-            children: <Widget>[
-              new RaisedButton(
-                  onPressed: () => debugPrint("clicked"), child: Text("clicked")),
-              new RaisedButton(
-                  onPressed: () => debugPrint("clicked"), child: Text("clicked")),
-            ],
-          ),
-        ]
-    );
 
-  }
+
 
   Widget _heading() {
     return new Padding(

@@ -41,6 +41,8 @@ Icon?
 /Flutter/Generated.xcconfig
 /ServiceDefinitions.json
 
+/Runner.xcodeproj/project.pbxproj
+
 Pods/
 .symlinks/
 Podfile

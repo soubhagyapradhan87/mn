@@ -21,11 +21,9 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
-//      appBar: AppBar(
-//        backgroundColor: Colors.transparent,
-//        title: Text("rinku"),
-//      ),
+
 //      drawer: Drawer(
 //        child: ListView(
 //          children: <Widget>[
@@ -35,18 +33,25 @@ class HomeScreen extends StatelessWidget {
 //          ],
 //        ),
 //      ),
-      body: Stack(
-        fit: StackFit.expand,
-        children: <Widget>[
-          background,
-          opacity,
-          Column(
-            children: <Widget>[
-              _createContent(),
-            ],
-          )
-        ],
-      ),
+      body: _stack()
+    );
+  }
+
+  Widget _stack(){
+    return Stack(
+      fit: StackFit.expand,
+      children: <Widget>[
+        background,
+        opacity,
+        ListView(
+          children: <Widget>[
+            _heading(),
+            SingleChildScrollView(
+              child: _createContent(),
+            )
+          ],
+        )
+      ],
     );
   }
 
@@ -54,29 +59,9 @@ class HomeScreen extends StatelessWidget {
     return new SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[_heading(), _createCourseScroller()],
+        children: <Widget>[_createCourseScroller(),_createCourseScroller(),_createCourseScroller(),_createCourseScroller()],
       ),
     );
-  }
-
-
-  Widget _createCourseScroller() {
-    return new Padding(
-        padding: const EdgeInsets.only(top: 5.0),
-        child: Container(
-          child: new SizedBox.fromSize(
-            size: new Size.fromHeight(250.0),
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.symmetric(horizontal: 7.0),
-              itemCount: posts.post.length,
-              itemBuilder: (BuildContext context, int index) {
-                var post = posts.post[index];
-                return new PostCard(post);
-              },
-            ),
-          ),
-        ));
   }
 
 
@@ -88,6 +73,7 @@ class HomeScreen extends StatelessWidget {
       child: new Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
+
           new Row(
             children: <Widget>[
               CircleAvatar(
@@ -133,5 +119,25 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+
+
+  Widget _createCourseScroller() {
+    return new Padding(
+        padding: const EdgeInsets.only(top: 5.0),
+        child: Container(
+          child: new SizedBox.fromSize(
+            size: new Size.fromHeight(250.0),
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              padding: const EdgeInsets.symmetric(horizontal: 7.0),
+              itemCount: posts.post.length,
+              itemBuilder: (BuildContext context, int index) {
+                var post = posts.post[index];
+                return new PostCard(post);
+              },
+            ),
+          ),
+        ));
   }
 }

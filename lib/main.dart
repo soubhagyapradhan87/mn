@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 
 import 'package:mrun1/repo/repo.dart';
 import 'package:mrun1/ui/homeScreen.dart';
+import 'package:mrun1/util/util.dart';
 
 void main() async{
   await getJson();
@@ -25,10 +26,14 @@ Future<String> getJson() async {
   String imgurl="http://mrunalinee.com/wp-json/wp/v2/media?parent=";
   http.Response response = await http.get(apiurl);
   RepoData.data=json.decode(response.body);
-  print(RepoData.data);
+  //print(RepoData.data);
   List<Post> list=new List<Post>();
   for(var x in RepoData.data){
     String a=x["id"].toString();
+    //added to fetch youtube link from blog post
+    String youtubeLink=Util.getYoutubeLink(x["content"]["rendered"]);
+    print(youtubeLink);
+
     http.Response response1 = await http.get(imgurl+a);
     //print(imgurl+a);
     List imageData=json.decode(response1.body);

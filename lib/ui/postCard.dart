@@ -27,6 +27,7 @@ class PostCard extends StatelessWidget {
         children: <Widget>[
 
           Image.network(post.imglink),
+
         ],
       ),
     );
@@ -35,18 +36,28 @@ class PostCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 175.0,
+      width: 200.0,
       padding: const EdgeInsets.all(8.0),
       margin: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 16.0),
       decoration: _createShadowCorners(),
       child: new Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Flexible(
-            flex: 3,
-            child: _createThumbnail(),
-          ),
-          Flexible(flex: 4, child: createCourseInfo())
+//          Flexible(
+//            flex: 3,
+//            child: _createThumbnail(),
+//          ),
+//          Flexible(flex: 4, child: createCourseInfo())
+        Container(
+          height:100.0,
+          child: _createThumbnail(),
+        ),
+          Padding(padding: const EdgeInsets.only(top: 5.0)),
+          Container(
+            height: 90.0,
+            child: createCourseInfo(),
+          )
+
         ],
       ),
     );
@@ -55,17 +66,20 @@ class PostCard extends StatelessWidget {
   Widget createCourseInfo() {
     return new Column(
       children: <Widget>[
-        new Padding(padding: const EdgeInsets.only(top: 15.0)),
-        new Text(
-          post.title,
-          style: TextStyle(color: Colors.white.withOpacity(1.0)),
-        ),
-        new Padding(padding: const EdgeInsets.only(top: 15.0)),
-        new Text(
-          post.date,
-          style: TextStyle(color: Colors.white.withOpacity(1.0),fontSize: 11.0,
-              fontWeight: FontWeight.bold),
-        ),
+
+        Container(
+          height:60.0,
+          child: Text(
+            post.title,
+            style: TextStyle(color: Colors.white.withOpacity(1.0)),
+          )),
+            new Padding(padding: const EdgeInsets.only(top: 15.0)),
+            new Text(
+              post.date,
+              style: TextStyle(color: Colors.white.withOpacity(1.0),fontSize: 11.0,
+                  fontWeight: FontWeight.bold),
+            ),
+
       ],
     );
   }

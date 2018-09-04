@@ -36,7 +36,7 @@ class PostCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 200.0,
+      width: 230.0,
       padding: const EdgeInsets.all(8.0),
       margin: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 16.0),
       decoration: _createShadowCorners(),
@@ -49,7 +49,7 @@ class PostCard extends StatelessWidget {
 //          ),
 //          Flexible(flex: 4, child: createCourseInfo())
         Container(
-          height:100.0,
+          height:120.0,
           child: _createThumbnail(),
         ),
           Padding(padding: const EdgeInsets.only(top: 5.0)),
@@ -71,7 +71,7 @@ class PostCard extends StatelessWidget {
           height:60.0,
           child: Text(
             post.title,
-            style: TextStyle(color: Colors.white.withOpacity(1.0)),
+            style: TextStyle(color: Colors.white.withOpacity(1.0),fontSize: 17.0),
           )),
             new Padding(padding: const EdgeInsets.only(top: 15.0)),
             new Text(

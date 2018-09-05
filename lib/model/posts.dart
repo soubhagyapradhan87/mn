@@ -18,11 +18,11 @@ class Posts {
 }
 
 class Post {
-  Post({@required this.title, @required this.id, @required this.link,@required this.imglink,@required this.date});
+  Post({@required this.title, @required this.id, @required this.link,@required this.imgLink,@required this.date});
 
   final String title;
   final String id;
   final String link;
-  final String imglink;
+  final String imgLink;
   final String date;
 }

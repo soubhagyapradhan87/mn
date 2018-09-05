@@ -59,7 +59,7 @@ class HomeScreen extends StatelessWidget {
     return new SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[_createCourseScroller(),_createCourseScroller(),_createCourseScroller(),_createCourseScroller()],
+        children: <Widget>[_createCourseScroller()],
       ),
     );
   }
@@ -115,7 +115,7 @@ class HomeScreen extends StatelessWidget {
                 new TextStyle(color: Colors.white, height: 1.4, fontSize: 17.0),
           ),
           Padding(padding: const EdgeInsets.only(top: 15.0)),
-          Text("Recently Added", style: new TextStyle(color: Colors.white))
+
         ],
       ),
     );
@@ -126,17 +126,38 @@ class HomeScreen extends StatelessWidget {
     return new Padding(
         padding: const EdgeInsets.only(top: 5.0),
         child: Container(
-          child: new SizedBox.fromSize(
-            size: new Size.fromHeight(300.0),
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.symmetric(horizontal: 7.0),
-              itemCount: posts.post.length,
-              itemBuilder: (BuildContext context, int index) {
-                var post = posts.post[index];
-                return new PostCard(post);
-              },
-            ),
+          child: Column(
+            children: <Widget>[
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.black26,
+                  borderRadius: BorderRadius.circular(20.0),
+                  border: new Border.all(
+                    color: Colors.white,
+                    width: 1.0,
+                  ),
+                ),
+                height: 25.0,
+                width: 320.0,
+
+                child: Text("Item Title",style: TextStyle(color: Colors.white,fontSize: 15.0),textAlign: TextAlign.center,),
+              ),
+
+              Container(
+                child: new SizedBox.fromSize(
+                  size: new Size.fromHeight(300.0),
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    padding: const EdgeInsets.symmetric(horizontal: 7.0),
+                    itemCount: posts.post.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      var post = posts.post[index];
+                      return new PostCard(post);
+                    },
+                  ),
+                ),
+              )
+            ],
           ),
         ));
   }

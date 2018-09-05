@@ -37,7 +37,7 @@ Future<String> getJson() async {
     http.Response response1 = await http.get(imgurl+a);
     //print(imgurl+a);
     List imageData=json.decode(response1.body);
-    Post p=new Post(title: x["title"]["rendered"], id: a, link: x["link"], imglink: imageData[0]["guid"]["rendered"],date: x["date"]);
+    Post p=new Post(title: x["title"]["rendered"], id: a, link: x["link"], imgLink: imageData[0]["guid"]["rendered"],date: x["date"]);
     list.add(p);
 
   }

@@ -23,7 +23,7 @@ import 'package:mrun1/repo/repo.dart';
 
 class Util{
 
-  static String getYoutubeLink(String s){
+  static String getYoutubeLink(String s, {imgLink, date}){
 
     int s1 = s.lastIndexOf("http://www.youtube.com/embed/");
     return "https://www.youtube.com/watch?v="+s.substring(s1+29,s1+40);

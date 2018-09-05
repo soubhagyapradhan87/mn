@@ -1,12 +1,20 @@
 
 import 'package:flutter/material.dart';
+import 'package:mrun1/ui/pageview.dart';
+import 'package:path/path.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:mrun1/model/posts.dart';
+
+
 class PostCard extends StatelessWidget {
   PostCard(this.post);
 
   final Post post;
 
+
+//  void _onTap(){
+//    Navigator.push(context, MaterialPageRoute(builder: (context)=>Pageview()));
+//  }
 
   BoxDecoration _createShadowCorners() {
     return BoxDecoration(
@@ -25,8 +33,21 @@ class PostCard extends StatelessWidget {
       child: Stack(
 
         children: <Widget>[
-
           Image.network(post.imglink),
+          Center(
+            child:Container(
+              height: 70.0,
+              width: 80.0,
+              child: FlatButton(
+                  onPressed: ()async{
+                    if(await canLaunch("https://www.youtube.com")){
+                      await launch("https://www.youtube.com");
+                    }
+                  },
+                  child: Image.asset("assets/youtube.png")),
+            )
+
+          )
 
         ],
       ),
@@ -52,7 +73,7 @@ class PostCard extends StatelessWidget {
           height:120.0,
           child: _createThumbnail(),
         ),
-          Padding(padding: const EdgeInsets.only(top: 5.0)),
+          Padding(padding: const EdgeInsets.only(top: 25.0)),
           Container(
             height: 90.0,
             child: createCourseInfo(),
@@ -63,18 +84,26 @@ class PostCard extends StatelessWidget {
     );
   }
 
+
+
   Widget createCourseInfo() {
     return new Column(
       children: <Widget>[
 
-        Container(
-          height:60.0,
-          child: Text(
-            post.title,
-            style: TextStyle(color: Colors.white.withOpacity(1.0),fontSize: 17.0),
-          )),
-            new Padding(padding: const EdgeInsets.only(top: 15.0)),
-            new Text(
+           FlatButton(
+             onPressed:(){
+               //Navigator.push(context, MaterialPageRoute(builder: (context)=>Pageview()));
+
+             },
+             child: Container(
+                 height:60.0,
+                 child: Text(
+                   post.title,
+                   style: TextStyle(color: Colors.white.withOpacity(1.0),fontSize: 17.0),
+                 )),
+           ),
+            Padding(padding: const EdgeInsets.only(top: 15.0)),
+            Text(
               post.date,
               style: TextStyle(color: Colors.white.withOpacity(1.0),fontSize: 11.0,
                   fontWeight: FontWeight.bold),

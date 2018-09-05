@@ -33,7 +33,7 @@ class PostCard extends StatelessWidget {
       child: Stack(
 
         children: <Widget>[
-          Image.network(post.imglink),
+          Image.network(post.imgLink),
           Center(
             child:Container(
               height: 70.0,

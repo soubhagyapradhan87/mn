@@ -2,10 +2,60 @@ import 'package:flutter/material.dart';
 import 'package:mrun1/model/posts.dart';
 import 'package:mrun1/ui/postCard.dart';
 
+class MasterScreen extends StatefulWidget{
+  MasterScreen(@required this.home);
+  Home home;
+  @override
+  State<StatefulWidget> createState()=> new MasterScreenState(home);
+
+
+// TODO: implement createState
+
+
+}
+class MasterScreenState extends State<MasterScreen>{
+  MasterScreenState(@required this.home);
+  Home home;
+
+  ScrollController controller;
+
+  @override
+  void initState() {
+    controller = new ScrollController()..addListener(_scrollListener);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.removeListener(_scrollListener);
+    super.dispose();
+  }
+
+
+  @override
+  Widget build(BuildContext context) {
+    return new HomeScreen(home, controller);
+  }
+
+  void _scrollListener() {
+
+
+    if (controller.position.extentAfter < 300 ) {
+      /*setState(() {
+        items.addAll(new List.generate(42, (index) => 'Inserted $index'));
+      });*/
+
+      print(controller.position.extentAfter);
+    }
+  }
+
+}
+
 class HomeScreen extends StatelessWidget {
-  HomeScreen(@required this.home);
+  HomeScreen(@required this.home,@required this.controller);
 
   final Home home;
+  ScrollController controller;
 
   final background = Container(
     decoration: BoxDecoration(
@@ -44,6 +94,7 @@ class HomeScreen extends StatelessWidget {
         background,
         opacity,
         ListView(
+          controller: controller,
           children: <Widget>[
             _heading(),
             SingleChildScrollView(

@@ -16,7 +16,7 @@ class Home {
   final String backdropPhoto;
   final String about;
   //final List<Post> post;
-  final List<Category> categories;
+   List<Category> categories;
 }
 
 class Post {

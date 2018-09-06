@@ -15,7 +15,7 @@ void main() async{
       new MaterialApp(
         title: "MrunApp",
         debugShowCheckedModeBanner: false,
-        home: new HomeScreen(RepoData.home)
+        home: new MasterScreen(RepoData.home)
         //home:null
       )
   );

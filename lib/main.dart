@@ -30,7 +30,7 @@ Future<String> getJson() async {
 
   http.Response responseCatUrl = await http.get(catUrl);
   RepoData.catJsonList=json.decode(responseCatUrl.body);
-   print("catjson lenth ${RepoData.catJsonList.length}");
+   //print("catjson lenth ${RepoData.catJsonList.length}");
   List<Category> catList=new List<Category>();
 
 
@@ -54,46 +54,46 @@ Future<String> getJson() async {
  // catList.add(cat);
 */
   //Adding other Categories
-print("out of first loop");
+//print("out of first loop");
   for(var x in RepoData.catJsonList){
     http.Response responsePostUrl = await http.get(postByCatUrl + x["id"].toString());
     RepoData.postJsonList=json.decode(responsePostUrl.body);
 
-    print("first loop started");
+    //print("first loop started");
     List<Post> postList=new List<Post>();
     for(var y in RepoData.postJsonList){
 
-      print("for loop started");
+      //print("for loop started");
       //added to fetch youtube link from blog post
       String youtubeLink=Util.getYoutubeLink(y["content"]["rendered"]);
-      print(youtubeLink);
+      //print(youtubeLink);
 
       //Fetch image
       http.Response response1 = await http.get(imgUrl+y["id"].toString());
-      print(imgUrl+y["id"].toString());
+      //print(imgUrl+y["id"].toString());
       List imageData=json.decode(response1.body);
 
       Post post=  await new Post(title: y["title"]["rendered"], id: y["id"].toString(), link: y["link"],youtubeLink: youtubeLink, imgLink: imageData[0]["media_details"]["sizes"]["medium"]["source_url"],date: y["date"]);;
-      print(post.title);
-      print(imageData[0]["media_details"]["sizes"]["medium"]["source_url"]);
+      //print(post.title);
+      //print(imageData[0]["media_details"]["sizes"]["medium"]["source_url"]);
       postList.add(post);
     }
 
-    print("hello");
-    print(x["name"]);
-    print(x["id"]);
+    //print("hello");
+    //print(x["name"]);
+    //print(x["id"]);
     //print(x["name"]);
     Category cat=await new Category(title: x["name"], id: x["id"].toString(), posts: postList);
-    print(cat.title);
+    //print(cat.title);
     catList.add(cat);
 
-    print("for loop ended");
+    //print("for loop ended");
   }
 print("creating home");
   Home home=await new Home(name: "Mrunalinee", location: "Bangalore", logo: "assets/back.png",
       backdropPhoto: "assets/thumbnail.png", about: "One Stop For Authentic Odia Recipes", categories: catList);
-  print("abc");
+  //print("abc");
   RepoData.home=home;
-  print(RepoData.home);
+  //print(RepoData.home);
   return  "succss";
 }

@@ -149,7 +149,7 @@ class HomeScreen extends StatelessWidget {
                     width: 1.0,
                   ),
                 ),
-                height: 25.0,
+                height: 20.0,
                 width: 320.0,
 
                 child: Text(home.categories[i].title,style: TextStyle(color: Colors.white,fontSize: 15.0),textAlign: TextAlign.center,),

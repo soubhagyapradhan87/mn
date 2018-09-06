@@ -72,7 +72,7 @@ class PostCard extends StatelessWidget {
           height:120.0,
           child: _createThumbnail(),
         ),
-          Padding(padding: const EdgeInsets.only(top: 25.0)),
+          Padding(padding: const EdgeInsets.only(top: 21.0)),
           Container(
             height: 90.0,
             child: createCourseInfo(),
@@ -98,7 +98,8 @@ class PostCard extends StatelessWidget {
                  height:60.0,
                  child: Text(
                    post.title,
-                   style: TextStyle(color: Colors.white.withOpacity(1.0),fontSize: 17.0),
+                   style: TextStyle(color: Colors.white.withOpacity(1.0),fontSize: 15.0),
+                   textAlign: TextAlign.center,
                  )),
            ),
             Padding(padding: const EdgeInsets.only(top: 15.0)),

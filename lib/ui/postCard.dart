@@ -1,6 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:mrun1/ui/pageview.dart';
 import 'package:path/path.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:mrun1/model/posts.dart';

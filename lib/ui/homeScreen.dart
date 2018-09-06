@@ -3,9 +3,9 @@ import 'package:mrun1/model/posts.dart';
 import 'package:mrun1/ui/postCard.dart';
 
 class HomeScreen extends StatelessWidget {
-  HomeScreen(@required this.posts);
+  HomeScreen(@required this.home);
 
-  final Posts posts;
+  final Home home;
 
   final background = Container(
     decoration: BoxDecoration(
@@ -59,7 +59,7 @@ class HomeScreen extends StatelessWidget {
     return new SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[_createCourseScroller()],
+        children: _createCategoriesArray(),
       ),
     );
   }
@@ -80,14 +80,14 @@ class HomeScreen extends StatelessWidget {
                 radius: 40.0,
                 backgroundColor: Colors.white,
                 child: new Image.asset(
-                  posts.logo,
+                  home.logo,
                   width: 100.0,
                   height: 100.0,
                 ),
               ),
               Padding(padding: const EdgeInsets.only(right: 10.0)),
               Text(
-                posts.name,
+                home.name,
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 40.0,
@@ -97,7 +97,7 @@ class HomeScreen extends StatelessWidget {
           ),
           Padding(padding: const EdgeInsets.only(top: 17.0)),
           Text(
-            posts.location,
+            home.location,
             style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w400,
@@ -110,7 +110,7 @@ class HomeScreen extends StatelessWidget {
             height: 1.0,
           ),
           new Text(
-            posts.about,
+            home.about,
             style:
                 new TextStyle(color: Colors.white, height: 1.4, fontSize: 17.0),
           ),
@@ -121,8 +121,20 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
+  List<Widget> _createCategoriesArray(){
 
-  Widget _createCourseScroller() {
+    int index=0;
+    List<Widget> wList=new List<Widget>();
+    for(var x in home.categories){
+
+     wList.add(_createCourseScroller(index)) ;
+     index++;
+
+    }
+    return wList;
+  }
+
+  Widget _createCourseScroller(int i) {
     return new Padding(
         padding: const EdgeInsets.only(top: 5.0),
         child: Container(
@@ -140,7 +152,7 @@ class HomeScreen extends StatelessWidget {
                 height: 25.0,
                 width: 320.0,
 
-                child: Text("Item Title",style: TextStyle(color: Colors.white,fontSize: 15.0),textAlign: TextAlign.center,),
+                child: Text(home.categories[i].title,style: TextStyle(color: Colors.white,fontSize: 15.0),textAlign: TextAlign.center,),
               ),
 
               Container(
@@ -149,9 +161,9 @@ class HomeScreen extends StatelessWidget {
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     padding: const EdgeInsets.symmetric(horizontal: 7.0),
-                    itemCount: posts.post.length,
+                    itemCount: home.categories[i].posts.length,
                     itemBuilder: (BuildContext context, int index) {
-                      var post = posts.post[index];
+                      var post = home.categories[i].posts[index];
                       return new PostCard(post);
                     },
                   ),
@@ -159,6 +171,23 @@ class HomeScreen extends StatelessWidget {
               )
             ],
           ),
-        ));
+        )
+
+      /*  child: Container(
+          child: new SizedBox.fromSize(
+            size: new Size.fromHeight(300.0),
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              padding: const EdgeInsets.symmetric(horizontal: 7.0),
+              itemCount: home.categories[i].posts.length,
+              itemBuilder: (BuildContext context, int index) {
+                var post = home.categories[i].posts[index];
+                return new PostCard(post);
+              },
+            ),
+          ),
+        )*/
+
+      );
   }
 }

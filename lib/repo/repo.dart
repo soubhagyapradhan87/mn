@@ -2,6 +2,8 @@ import 'package:mrun1/model/posts.dart';
 
 
 class RepoData{
-  static List data;
-  static Posts posts;
+  static List latestPostJsonList;
+  static List postJsonList;
+  static List catJsonList;
+  static Home home;
 }

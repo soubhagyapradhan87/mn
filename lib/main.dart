@@ -24,8 +24,8 @@ void main() async{
 
 Future<String> getJson() async {
   String postUrl = "http://mrunalinee.com/wp-json/wp/v2/posts";
-  String catUrl = "http://mrunalinee.com/wp-json/wp/v2/categories";
-  String postByCatUrl="http://www.mrunalinee.com/wp-json/wp/v2/posts?categories=";
+  String catUrl = "http://mrunalinee.com/wp-json/wp/v2/categories?per_page=3&page=1";
+  String postByCatUrl="http://www.mrunalinee.com/wp-json/wp/v2/posts?per_page=3&page=1&categories=";
   String imgUrl="http://mrunalinee.com/wp-json/wp/v2/media?parent=";
 
   http.Response responseCatUrl = await http.get(catUrl);

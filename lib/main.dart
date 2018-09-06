@@ -54,7 +54,7 @@ Future<String> getJson() async {
  // catList.add(cat);
 */
   //Adding other Categories
-//print("out of first loop");
+print("out of first loop");
   for(var x in RepoData.catJsonList){
     http.Response responsePostUrl = await http.get(postByCatUrl + x["id"].toString());
     RepoData.postJsonList=json.decode(responsePostUrl.body);

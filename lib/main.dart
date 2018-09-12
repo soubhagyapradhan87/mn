@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:mrun1/model/posts.dart';
+import 'package:mrun1/model/home.dart';
 
 import 'package:flutter/material.dart';
 
@@ -15,7 +15,7 @@ void main() async{
       new MaterialApp(
         title: "MrunApp",
         debugShowCheckedModeBanner: false,
-        home: new MasterScreen(RepoData.home)
+        home: new HomeScreen(RepoData.home)
         //home:null
       )
   );
@@ -74,7 +74,7 @@ print("out of first loop");
       //print(imgUrl+y["id"].toString());
       List imageData=json.decode(response1.body);
 
-      Post post=  await new Post(title: y["title"]["rendered"], id: y["id"].toString(), link: y["link"],youtubeLink: youtubeLink, imgLink: imageData[0]["media_details"]["sizes"]["medium"]["source_url"],date: y["date"]);;
+      Post post=  await new Post(title: y["title"]["rendered"], id: y["id"].toString(), link: y["link"],youtubeLink: youtubeLink, imgLink: imageData[0]["media_details"]["sizes"]["medium"]["source_url"],date: y["date"],htmlContent: y["content"]["rendered"]);;
       //print(post.title);
       //print(imageData[0]["media_details"]["sizes"]["medium"]["source_url"]);
       postList.add(post);

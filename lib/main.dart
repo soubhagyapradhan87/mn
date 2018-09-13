@@ -30,8 +30,10 @@ Future<String> getJson() async {
 
   http.Response responseCatUrl = await http.get(catUrl);
   RepoData.catJsonList=json.decode(responseCatUrl.body);
+
    //print("catjson lenth ${RepoData.catJsonList.length}");
   //print("sunil123");
+
   List<Category> catList=new List<Category>();
 
 

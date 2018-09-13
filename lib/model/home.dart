@@ -16,11 +16,11 @@ class Home {
   final String backdropPhoto;
   final String about;
   //final List<Post> post;
-  final List<Category> categories;
+   List<Category> categories;
 }
 
 class Post {
-  Post({@required this.title, @required this.id, @required this.link,@required this.youtubeLink,@required this.imgLink,@required this.date});
+  Post({@required this.title, @required this.id, @required this.link,@required this.youtubeLink,@required this.imgLink,@required this.date,@required this.htmlContent});
 
   final String title;
   final String id;
@@ -28,6 +28,7 @@ class Post {
   final String youtubeLink;
   final String imgLink;
   final String date;
+  final String htmlContent;
 }
 
 class Category {

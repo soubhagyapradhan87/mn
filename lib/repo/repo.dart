@@ -1,4 +1,4 @@
-import 'package:mrun1/model/posts.dart';
+import 'package:mrun1/model/home.dart';
 
 
 class RepoData{

@@ -1,19 +1,21 @@
 
 import 'package:flutter/material.dart';
+import 'package:mrun1/ui/mhorizontalscroll.dart';
+import 'package:mrun1/ui/mpageview.dart';
 import 'package:path/path.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:mrun1/model/posts.dart';
+import 'package:mrun1/model/home.dart';
+import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
+
 
 
 class PostCard extends StatelessWidget {
-  PostCard(this.post);
+  PostCard(this.post,this.catIndex);
 
+  final int catIndex;
   final Post post;
 
-
-//  void _onTap(){
-//    Navigator.push(context, MaterialPageRoute(builder: (context)=>Pageview()));
-//  }
+  BuildContext context;
 
   BoxDecoration _createShadowCorners() {
     return BoxDecoration(
@@ -55,6 +57,7 @@ class PostCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Container(
       width: 230.0,
       padding: const EdgeInsets.all(8.0),
@@ -72,10 +75,40 @@ class PostCard extends StatelessWidget {
           height:120.0,
           child: _createThumbnail(),
         ),
-          Padding(padding: const EdgeInsets.only(top: 25.0)),
-          Container(
-            height: 90.0,
-            child: createCourseInfo(),
+          Padding(padding: const EdgeInsets.only(top: 21.0)),
+          GestureDetector(
+            onTap: () async {
+              MHorizontalScroll mh=context.ancestorWidgetOfExactType(MHorizontalScroll) as MHorizontalScroll;
+              print(mh.categories.length);
+              MPageView.postIndex=mh.categories[catIndex].posts.indexOf(post);
+
+
+              if(await canLaunch(post.link)){
+              await launch(post.link,forceWebView: true);
+              }
+
+
+              /*Navigator.of(context).push(MaterialPageRoute(builder: (context)=>WebviewScaffold(
+                url: post.link,
+                withJavascript: true,
+                withLocalStorage: true,
+                appBar: new AppBar(
+                  title: new Text(post.link),
+                  automaticallyImplyLeading: false,
+                  *//* actions: <Widget>[new IconButton(icon: new ExpandIcon(), onPressed: () {
+                _putUserName('');
+                Navigator.of(context)
+                    .pushReplacementNamed ('/');
+              }),]*//*
+                ),
+              )
+              ));*/
+            },
+            child: Container(
+              height: 90.0,
+              child: createCourseInfo(),
+            )
+            ,
           )
 
         ],
@@ -85,22 +118,22 @@ class PostCard extends StatelessWidget {
 
 
 
+
+
+
   Widget createCourseInfo() {
+
     return new Column(
       children: <Widget>[
 
-           FlatButton(
-             onPressed:(){
-               //Navigator.push(context, MaterialPageRoute(builder: (context)=>Pageview()));
-
-             },
-             child: Container(
+        Container(
                  height:60.0,
                  child: Text(
                    post.title,
-                   style: TextStyle(color: Colors.white.withOpacity(1.0),fontSize: 17.0),
+                   style: TextStyle(color: Colors.white.withOpacity(1.0),fontSize: 15.0),
+                   textAlign: TextAlign.center,
                  )),
-           ),
+
             Padding(padding: const EdgeInsets.only(top: 15.0)),
             Text(
               post.date,

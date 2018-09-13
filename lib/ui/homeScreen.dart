@@ -1,11 +1,66 @@
 import 'package:flutter/material.dart';
-import 'package:mrun1/model/posts.dart';
+import 'package:mrun1/model/home.dart';
+import 'package:mrun1/ui/mhorizontalscroll.dart';
 import 'package:mrun1/ui/postCard.dart';
+
+/*
+class MasterScreen extends StatefulWidget{
+  MasterScreen(@required this.home);
+  Home home;
+  @override
+  State<StatefulWidget> createState()=> new MasterScreenState(home);
+
+
+// TODO: implement createState
+
+
+}
+class MasterScreenState extends State<MasterScreen>{
+  MasterScreenState(@required this.home);
+  Home home;
+
+  ScrollController controller;
+
+  @override
+  void initState() {
+    controller = new ScrollController()..addListener(_scrollListener);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.removeListener(_scrollListener);
+    super.dispose();
+  }
+
+
+  @override
+  Widget build(BuildContext context) {
+    return new HomeScreen(home, controller);
+  }
+
+  void _scrollListener() {
+
+
+    if (controller.position.extentAfter < 300 ) {
+      */
+/*setState(() {
+        items.addAll(new List.generate(42, (index) => 'Inserted $index'));
+      });*//*
+
+
+      print(controller.position.extentAfter);
+    }
+  }
+
+}
+*/
 
 class HomeScreen extends StatelessWidget {
   HomeScreen(@required this.home);
 
   final Home home;
+  ScrollController controller;
 
   final background = Container(
     decoration: BoxDecoration(
@@ -44,6 +99,7 @@ class HomeScreen extends StatelessWidget {
         background,
         opacity,
         ListView(
+          controller: controller,
           children: <Widget>[
             _heading(),
             SingleChildScrollView(
@@ -137,41 +193,7 @@ class HomeScreen extends StatelessWidget {
   Widget _createCourseScroller(int i) {
     return new Padding(
         padding: const EdgeInsets.only(top: 5.0),
-        child: Container(
-          child: Column(
-            children: <Widget>[
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.black26,
-                  borderRadius: BorderRadius.circular(20.0),
-                  border: new Border.all(
-                    color: Colors.white,
-                    width: 1.0,
-                  ),
-                ),
-                height: 25.0,
-                width: 320.0,
-
-                child: Text(home.categories[i].title,style: TextStyle(color: Colors.white,fontSize: 15.0),textAlign: TextAlign.center,),
-              ),
-
-              Container(
-                child: new SizedBox.fromSize(
-                  size: new Size.fromHeight(300.0),
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    padding: const EdgeInsets.symmetric(horizontal: 7.0),
-                    itemCount: home.categories[i].posts.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      var post = home.categories[i].posts[index];
-                      return new PostCard(post);
-                    },
-                  ),
-                ),
-              )
-            ],
-          ),
-        )
+        child: MHorizontalScroll(home.categories,i)
 
       /*  child: Container(
           child: new SizedBox.fromSize(
@@ -190,4 +212,5 @@ class HomeScreen extends StatelessWidget {
 
       );
   }
+
 }

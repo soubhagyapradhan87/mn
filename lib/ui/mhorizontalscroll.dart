@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:mrun1/model/home.dart';
+import 'package:mrun1/repo/repo.dart';
 import 'package:mrun1/ui/postCard.dart';
+import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
+import 'dart:convert';
+import 'dart:async';
+import 'package:http/http.dart' as http;
+import 'package:mrun1/util/util.dart';
 
 class MHorizontalScroll extends StatefulWidget {
   MHorizontalScroll(this.categories,this.i);
@@ -17,6 +23,14 @@ class _MHorizontalScrollState extends State<MHorizontalScroll> {
 
   final List<Category> categories;
   final int i;
+  var postPageIndex=1;
+
+//  @override
+//  void initState() {
+//    _loadMore();
+//    super.initState();
+//  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -40,19 +54,37 @@ class _MHorizontalScrollState extends State<MHorizontalScroll> {
           Container(
             child: new SizedBox.fromSize(
               size: new Size.fromHeight(300.0),
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                padding: const EdgeInsets.symmetric(horizontal: 7.0),
-                itemCount: categories[i].posts.length,
-                itemBuilder: (BuildContext context, int index) {
-                  var post = categories[i].posts[index];
-                  return new PostCard(post, i);
-                },
-              ),
+              child:LazyLoadScrollView(
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.symmetric(horizontal: 7.0),
+                  itemCount: categories[i].posts.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    var post = categories[i].posts[index];
+                    return new PostCard(post, i);
+                  },
+                ),
+                onEndOfPage: _loadMore,
+              )
+              
             ),
           )
         ],
       ),
     );
   }
+
+
+
+  void _loadMore() {
+    setState(() {
+      //var a=new RepoData();
+      postPageIndex++;
+      RepoData.getPosts(postPageIndex,categories[i]);
+
+    });
+  }
+
+
+
 }

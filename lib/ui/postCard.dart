@@ -6,6 +6,7 @@ import 'package:path/path.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:mrun1/model/home.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
+import 'package:flutter_youtube/flutter_youtube.dart';
 
 
 
@@ -16,6 +17,8 @@ class PostCard extends StatelessWidget {
   final Post post;
 
   BuildContext context;
+  TextEditingController textEditingControllerUrl = new TextEditingController();
+  TextEditingController textEditingControllerId = new TextEditingController();
 
   BoxDecoration _createShadowCorners() {
     return BoxDecoration(
@@ -26,6 +29,15 @@ class PostCard extends StatelessWidget {
           new BoxShadow(
               color: Colors.black26, spreadRadius: 2.0, blurRadius: 10.0)
         ]);
+  }
+
+  void playYoutubeVideo() {
+
+    FlutterYoutube.playYoutubeVideoByUrl(
+      apiKey: "AIzaSyAvZxrNjvwomM9PloY-vk2rO4QxAI35Gc0",
+      videoUrl: post.youtubeLink,
+      autoPlay: true,
+    );
   }
 
   Widget _createThumbnail() {
@@ -40,11 +52,12 @@ class PostCard extends StatelessWidget {
               height: 70.0,
               width: 80.0,
               child: FlatButton(
-                  onPressed: ()async{
-                    if(await canLaunch("https://www.youtube.com")){
-                      await launch("https://www.youtube.com");
+                  onPressed:playYoutubeVideo
+                  /*()async{
+                    if(await canLaunch(post.youtubeLink)){
+                      await launch(post.youtubeLink);
                     }
-                  },
+                  }*/,
                   child: Image.asset("assets/youtube.png")),
             )
 

@@ -79,12 +79,12 @@ class _MVerticalScrollState extends State<MVerticalScroll> {
 
   Widget _heading() {
     return new Padding(
-      padding: const EdgeInsets.only(top: 100.0, left: 14.0, right: 14.0),
+      padding: const EdgeInsets.only(top: 20.0, left: 14.0, right: 14.0),
       child: new Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
 
-          new Row(
+          /*new Row(
             children: <Widget>[
               CircleAvatar(
                 radius: 40.0,
@@ -104,7 +104,7 @@ class _MVerticalScrollState extends State<MVerticalScroll> {
                     fontWeight: FontWeight.bold),
               ),
             ],
-          ),
+          ),*/
           Padding(padding: const EdgeInsets.only(top: 17.0)),
           Text(
             home.location,
@@ -119,12 +119,12 @@ class _MVerticalScrollState extends State<MVerticalScroll> {
             width: 500.0,
             height: 1.0,
           ),
-          new Text(
+          /*new Text(
             home.about,
             style:
             new TextStyle(color: Colors.white, height: 1.4, fontSize: 17.0),
           ),
-          Padding(padding: const EdgeInsets.only(top: 15.0)),
+          Padding(padding: const EdgeInsets.only(top: 15.0)),*/
 
         ],
       ),

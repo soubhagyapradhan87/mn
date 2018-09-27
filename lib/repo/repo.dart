@@ -12,11 +12,36 @@ class RepoData{
   static List postJsonList;
   static List catJsonList;
   static Home home;
+  static Set<String> searchSuggestionList=new Set<String>();
+  static List<Post> searchList=new List<Post>();
+
+
+  static Future<String> searchPost(String str) async {
+    String searchUrl = "http://mrunalinee.com/wp-json/wp/v2/posts?search=";
+    String imgUrl = "http://mrunalinee.com/wp-json/wp/v2/media?parent=";
+    http.Response responsePostUrl = await http.get(searchUrl + str);
+    RepoData.postJsonList = json.decode(responsePostUrl.body);
+
+
+    for (var y in RepoData.postJsonList) {
+      String youtubeLink = Util.getYoutubeLink(y["content"]["rendered"]);
+      http.Response response1 = await http.get(imgUrl + y["id"].toString());
+      List imageData = json.decode(response1.body);
+
+      Post post = await new Post(title: y["title"]["rendered"],
+          id: y["id"].toString(),
+          link: y["link"],
+          youtubeLink: youtubeLink,
+          imgLink: imageData[0]["media_details"]["sizes"]["medium"]["source_url"],
+          date: y["date"],
+          htmlContent: y["content"]["rendered"]);
+      searchList.add(post);
+      //cat.posts.add(post);
+      return "success";
+    }
+  }
 
   static Future<String> getPosts(int postPageIndex,Category cat) async{
-
-
-
 
     String postByCatUrl="http://www.mrunalinee.com/wp-json/wp/v2/posts?categories="+cat.id+"&per_page=3&page=";
     String imgUrl="http://mrunalinee.com/wp-json/wp/v2/media?parent=";

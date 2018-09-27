@@ -61,6 +61,7 @@ class _MHorizontalScrollState extends State<MHorizontalScroll> {
                   itemCount: categories[i].posts.length,
                   itemBuilder: (BuildContext context, int index) {
                     var post = categories[i].posts[index];
+                    RepoData.searchSuggestionList.add(post.title);
                     return new PostCard(post, i);
                   },
                 ),

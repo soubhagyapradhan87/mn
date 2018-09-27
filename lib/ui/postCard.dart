@@ -23,7 +23,7 @@ class PostCard extends StatelessWidget {
   BoxDecoration _createShadowCorners() {
     return BoxDecoration(
 
-        color: Colors.white.withOpacity(0.4),
+        color: Colors.black.withOpacity(0.3),
         borderRadius: new BorderRadius.circular(12.0),
         boxShadow: <BoxShadow>[
           new BoxShadow(

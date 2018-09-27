@@ -63,8 +63,8 @@ print("out of first loop");
 
   }
 print("creating home");
-  Home home=await new Home(name: "Mrunalinee", location: "Bangalore", logo: "assets/back.png",
-      backdropPhoto: "assets/thumbnail.png", about: "One Stop For Authentic Odia Recipes", categories: catList);
+  Home home=await new Home(name: "Mrunalinee", location: "A Magical touch to Odia cuisine", logo: "assets/back.png",
+      backdropPhoto: "assets/thumbnail.png", about: "A Magical touch to Odia cuisine", categories: catList);
 
   RepoData.home=home;
 
